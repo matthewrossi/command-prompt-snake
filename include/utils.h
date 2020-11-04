@@ -21,6 +21,8 @@
 
 #include <string>
 
+#include <windows.h>
+
 const char kUp = 72;
 const char kLeft = 75;
 const char kDown = 80;
@@ -31,6 +33,7 @@ const char kEsc = 27;
 
 void cw(int, std::string);
 void gotoxy(int, int);
+COORD get_window_size();
 void scw(int, std::string, int = 12);
 void set_cursor_visibility(bool);
-void window_size(int, int);
+void set_window_size(COORD);

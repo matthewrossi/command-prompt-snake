@@ -36,8 +36,14 @@ int to_ms(int speed) {
 }
 
 int main() {
+    // get current command prompt status
+    COORD original_window_size = get_window_size();
+    std::cout << "window.X " << original_window_size.X << " window.Y " << original_window_size.Y << std::endl;
+    Sleep(2000);
+
+    // set command prompt status to meet snake "requirements"
     set_cursor_visibility(FALSE);
-    window_size(79, 48);
+    set_window_size({80, 49});
     system("title Snake");
     system("color F0");
 
@@ -173,6 +179,7 @@ int main() {
         }
     } while (menu != '4' && menu != kEsc);
     // TODO: restore previous command prompt state
+    set_window_size(original_window_size);
     set_cursor_visibility(TRUE);
     return EXIT_SUCCESS;
 }

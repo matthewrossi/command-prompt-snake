@@ -19,8 +19,6 @@
 
 #include "utils.h"
 
-#include <windows.h>
-
 #include <iostream>
 
 void gotoxy(int x, int y) {
@@ -42,11 +40,6 @@ void scw(int y, std::string in, int t) {
     }
 }
 
-void window_size(int x, int y) {
-    SMALL_RECT sr = {0, 0, (short) x, (short) y};
-    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &sr);
-}
-
 void set_cursor_visibility(bool visibile) {
     HANDLE hStdOut = NULL;
     CONSOLE_CURSOR_INFO curInfo;
@@ -55,4 +48,15 @@ void set_cursor_visibility(bool visibile) {
     GetConsoleCursorInfo(hStdOut, &curInfo);
     curInfo.bVisible = visibile;
     SetConsoleCursorInfo(hStdOut, &curInfo);
+}
+
+void set_window_size(COORD dwSize) {
+    SMALL_RECT sr = {0, 0, dwSize.X - 1, dwSize.Y - 1};
+    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &sr);
+}
+
+COORD get_window_size() {
+    CONSOLE_SCREEN_BUFFER_INFO  info;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
+    return {info.srWindow.Right + 1, info.srWindow.Bottom + 1};
 }
