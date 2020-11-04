@@ -36,6 +36,7 @@ int to_ms(int speed) {
 }
 
 int main() {
+    set_cursor_visibility(FALSE);
     window_size(79, 48);
     system("title Snake");
     system("color F0");
@@ -171,5 +172,7 @@ int main() {
                 break;
         }
     } while (menu != '4' && menu != kEsc);
+    // TODO: restore previous command prompt state
+    set_cursor_visibility(TRUE);
     return EXIT_SUCCESS;
 }

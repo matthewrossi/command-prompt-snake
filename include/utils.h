@@ -32,4 +32,5 @@ const char kEsc = 27;
 void cw(int, std::string);
 void gotoxy(int, int);
 void scw(int, std::string, int = 12);
+void set_cursor_visibility(bool);
 void window_size(int, int);

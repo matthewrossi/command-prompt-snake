@@ -46,3 +46,13 @@ void window_size(int x, int y) {
     SMALL_RECT sr = {0, 0, (short) x, (short) y};
     SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &sr);
 }
+
+void set_cursor_visibility(bool visibile) {
+    HANDLE hStdOut = NULL;
+    CONSOLE_CURSOR_INFO curInfo;
+
+    hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleCursorInfo(hStdOut, &curInfo);
+    curInfo.bVisible = visibile;
+    SetConsoleCursorInfo(hStdOut, &curInfo);
+}
