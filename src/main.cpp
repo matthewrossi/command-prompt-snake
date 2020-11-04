@@ -38,8 +38,6 @@ int to_ms(int speed) {
 int main() {
     // get current command prompt status
     COORD original_window_size = get_window_size();
-    std::cout << "window.X " << original_window_size.X << " window.Y " << original_window_size.Y << std::endl;
-    Sleep(2000);
 
     // set command prompt status to meet snake "requirements"
     set_cursor_visibility(FALSE);
