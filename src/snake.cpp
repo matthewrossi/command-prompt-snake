@@ -168,11 +168,11 @@ void Snake::flash(int num_times, int delay) {
 }
 
 void Snake::eat() {
-    Elem *node;
+    Elem *node, *prev = tail;
     enqueue(node);
     node->x = x;
     node->y = y;
-    // node->piece=
+    node->piece = prev->piece;
 }
 
 Snake::~Snake() {
