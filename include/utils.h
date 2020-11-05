@@ -33,6 +33,7 @@ const char kEsc = 27;
 
 void cw(int, std::string);
 void gotoxy(int, int);
+bool get_cursor_visibility();
 COORD get_window_size();
 void scw(int, std::string, int = 12);
 void set_cursor_visibility(bool);

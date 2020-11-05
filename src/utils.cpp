@@ -40,6 +40,12 @@ void scw(int y, std::string in, int t) {
     }
 }
 
+bool get_cursor_visibility() {
+    CONSOLE_CURSOR_INFO curInfo;
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+    return curInfo.bVisible;
+}
+
 void set_cursor_visibility(bool visibile) {
     HANDLE hStdOut = NULL;
     CONSOLE_CURSOR_INFO curInfo;
@@ -50,13 +56,13 @@ void set_cursor_visibility(bool visibile) {
     SetConsoleCursorInfo(hStdOut, &curInfo);
 }
 
-void set_window_size(COORD dwSize) {
-    SMALL_RECT sr = {0, 0, dwSize.X - 1, dwSize.Y - 1};
-    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &sr);
-}
-
 COORD get_window_size() {
     CONSOLE_SCREEN_BUFFER_INFO  info;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
     return {info.srWindow.Right + 1, info.srWindow.Bottom + 1};
+}
+
+void set_window_size(COORD dwSize) {
+    SMALL_RECT sr = {0, 0, dwSize.X - 1, dwSize.Y - 1};
+    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &sr);
 }
